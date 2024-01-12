@@ -1,0 +1,8 @@
+import { SavingPlan } from "./saving-plan";
+
+export interface Saving {
+    saving: SavingPlan,
+    amount: number,
+    date: Date
+
+}
