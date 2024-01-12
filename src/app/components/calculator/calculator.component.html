@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <p class="h5 card-title">Calculator</p>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col col-md-6 col-sm-12 ">
+                <form [formGroup]="calcForm" (ngSubmit)="calculate()">
+                    <div class="form-floating mb-3">
+                        <label for="floatingInput">Select tarrif:</label> <br>
+                        <select formControlName="tarrif" name="tarrif" style="width: 100%;">
+                            
+                        </select>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" formControlName="amount">
+                        <label for="floatingInput">Amount</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" formControlName="duration">
+                        <label for="floatingInput">Duration</label>
+                    </div>
+                    <div class="col-12 py-4">
+                        <button class="btn btn-primary w-100" type="submit">Calculate</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col col-md-6 col-sm-12">
+
+                <ul class="fa-ul">
+                    <li><span class="text-muted">Duration: </span>{{savingPlan?.duration}}</li>
+                    <li><span class="text-muted">Saving amount: </span>{{savingPlan?.amount}}</li>
+                    <li><span class="text-muted">Start date: </span>{{savingPlan?.startdate}}</li>
+                    <li><span class="text-muted">End date: </span>{{savingPlan?.endDate}}</li>
+
+                    <li class="h6"><span class="text-muted">Target: </span>{{savingPlan?.target}}</li>
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
