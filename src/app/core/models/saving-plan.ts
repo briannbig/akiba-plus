@@ -1,13 +1,17 @@
-import { Tarrif } from "./tarrif";
+import { SavingCycle } from "./saving-cycle";
 import { User } from "./user";
 
 export interface SavingPlan {
     user: User,
-    tarrif: Tarrif,
+    savingCycle: SavingCycle,
     duration: number,
     amount: number
-    startdate: Date,
+    aggressive: boolean
+    startdate?: Date,
     endDate?: Date,
-    reminderOn?: boolean
+    reminderOn?: boolean,
+
+
+    target?: number
 
 }
