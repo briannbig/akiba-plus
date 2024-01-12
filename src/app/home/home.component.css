@@ -1,0 +1,8 @@
+.container {
+    background-color: aliceblue;
+    height: 100%;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 30px;
+    border-radius: 15px;
+}
