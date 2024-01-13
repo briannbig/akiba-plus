@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
-import { User } from '../models/user';
 import { DOCUMENT } from '@angular/common';
+import { User } from '../../models/user';
 
 @Injectable({
   providedIn: 'root'

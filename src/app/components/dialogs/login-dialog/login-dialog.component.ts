@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatDialogTitle, MatDialogContent } from '@angular/material/dialog'
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../../core/service/auth/auth.service';
+
 
 @Component({
   selector: 'app-login-dialog',

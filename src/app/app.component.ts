@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginDialogComponent } from './components/dialogs/login-dialog/login-dialog.component';
-import { AuthService } from './core/services/auth.service';
+import { AuthService } from './core/service/auth/auth.service';
 
 @Component({
   selector: 'app-root',
