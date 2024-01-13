@@ -5,6 +5,7 @@ import { SavingPlan } from '../../core/models/saving-plan';
 import { User } from '../../core/models/user';
 import { SavingCycle } from '../../core/models/saving-cycle';
 import { SavingStrategy } from '../../core/models/saving-strategy';
+import { CalculatorService } from '../../core/service/calculator.service';
 
 @Component({
   selector: 'app-calculator',
@@ -27,6 +28,8 @@ export class CalculatorComponent {
     strategy: new FormControl(SavingStrategy.NORMAL, { nonNullable: true }),
   })
 
+  constructor(private calculatorService: CalculatorService) { }
+
 
   calculate() {
     let user: User = {
@@ -41,7 +44,9 @@ export class CalculatorComponent {
     let tarrif = this.calcForm.value.tarrif!;
     let strategy = this.calcForm.value.strategy!;
 
-    let target = 0
+    let target = this.calculatorService.calculateSavingsAmount(
+      tarrif, strategy, duration, amount
+    )
 
     this.savingPlan = {
       user: user,
