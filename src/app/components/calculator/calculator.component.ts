@@ -44,8 +44,7 @@ export class CalculatorComponent {
     let tarrif = this.calcForm.value.tarrif!;
     let strategy = this.calcForm.value.strategy!;
 
-    let target = this.calculatorService.calculateSavingsAmount(
-      tarrif, strategy, duration, amount
+    let target = this.calculatorService.calculateSavingsTargetAmount(strategy, duration, amount
     )
 
     this.savingPlan = {

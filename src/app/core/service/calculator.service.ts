@@ -9,8 +9,7 @@ export class CalculatorService {
 
   constructor() { }
 
-  calculateSavingsAmount(
-    cycle: SavingCycle,
+  calculateSavingsTargetAmount(
     strategy: SavingStrategy,
     duration: number,
     savingAmount: number
@@ -22,6 +21,23 @@ export class CalculatorService {
     }
 
     return totalSavings;
+  }
+
+  private calculateStartingAmount(
+    strategy: SavingStrategy,
+    targetAmount: number,
+    duration: number
+  ): number {
+    let startingAmount = 0;
+    let currentTotal = 0;
+
+    while (currentTotal < targetAmount) {
+      startingAmount += 1;
+      currentTotal = this.calculateSavingsTargetAmount(strategy, duration,startingAmount)
+      
+    }
+
+    return startingAmount;
   }
 
   private calculateSavingPerCycle(
