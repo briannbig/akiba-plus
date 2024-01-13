@@ -2,7 +2,7 @@
 
 <p *ngIf="savingPlans.length == 0">No plans yet</p>
 <div class="row">
-    <div *ngFor="let planItem of savingPlans" class="col">
+    <div *ngFor="let planItem of savingPlans" class="col col-md-6 col-sm-12">
         <app-saving-plan-list-item [savingPlan]="planItem"></app-saving-plan-list-item>
     </div>
 </div>
