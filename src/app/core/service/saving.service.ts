@@ -12,7 +12,7 @@ export class SavingService {
     return this.savings;
   }
 
-  public addSaving(savingPlan: SavingPlan) {
+  public addPlan(savingPlan: SavingPlan) {
     this.savings.push(savingPlan);
   }
 

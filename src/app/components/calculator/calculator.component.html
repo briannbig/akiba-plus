@@ -23,14 +23,22 @@
                         <label for="floatingInput">Duration</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <label for="floatingInput">Select strategy:</label> <br>
-                        <select formControlName="strategy" name="strategy" style="width: 100%;">
-                            <option *ngFor="let strategy of strategies" class="form-control" [value]="strategy">
-                                {{strategy}}</option>
-                        </select>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="" id="" value=""
+                                    [checked]="aggressive" (click)="toggleStrategy()">
+                                Aggressive?
+                            </label>
+                        </div>
+
                     </div>
-                    <div class="col-12 py-4">
-                        <button class="btn btn-primary w-100" type="submit">Calculate</button>
+                    <div class="rpw">
+                        <div class="col-12 w-100 m-1">
+                            <button class="btn w-100 btn-sm btn-primary " type="submit">Calculate</button>
+                        </div>
+                        <div *ngIf="savingPlan" class="col-12 w-100 m-1">
+                            <button class="btn w-100 btn-sm btn-dark " type="reset" (click)="reset()">Reset</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -38,17 +46,19 @@
             <div class="col col-md-6 col-sm-12">
 
                 <ul class="fa-ul">
-                    <li><span class="text-muted">Tarrif: </span>{{savingPlan?.savingCycle}}</li>
-                    <li><span class="text-muted">Duration: </span>{{savingPlan?.duration}}</li>
-                    <li><span class="text-muted">Saving amount: </span>{{savingPlan?.amount}}</li>
-                    <li><span class="text-muted">Start date: </span>{{savingPlan?.startdate}}</li>
-                    <li><span class="text-muted">End date: </span>{{savingPlan?.endDate}}</li>
-                    <li><span class="text-muted">Strategy: </span>{{savingPlan?.strategy}}</li>
+                    <li>Tarrif: <span class="text-muted">{{savingPlan?.savingCycle}}</span></li>
+                    <li>Duration: <span class="text-muted">{{savingPlan?.duration}}</span></li>
+                    <li>Saving amount: <span class="text-muted">{{savingPlan?.amount}}</span></li>
+                    <li>Strategy: <span class="text-muted">{{savingPlan?.strategy}}</span></li>
                     <br>
 
-                    <li class="h6"><span class="text-muted">Target: </span>{{savingPlan?.target}}</li>
+                    <li class="h6">Target: <span class="text-muted">{{savingPlan?.target}}</span></li>
 
                 </ul>
+
+                <div *ngIf="savingPlan" class="col-12 py-4">
+                    <button class="btn btn-warning w-100" (click)="createPlan()">Create plan</button>
+                </div>
 
             </div>
         </div>
