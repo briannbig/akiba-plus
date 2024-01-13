@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CalculatorComponent } from '../components/calculator/calculator.component';
 import { CommonModule } from '@angular/common';
-import { SavingService } from '../core/service/saving.service';
+import { SavingCycle } from '../core/models/saving-cycle';
 
 
 @Component({
@@ -11,15 +11,9 @@ import { SavingService } from '../core/service/saving.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  
-
-  constructor(private savingsService: SavingService) { }
-  ngOnInit(): void {
-    
-
-  }
+  tarrifs: SavingCycle[] = Object.values(SavingCycle)
 
 
 }

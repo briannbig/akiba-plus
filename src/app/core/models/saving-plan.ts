@@ -1,4 +1,5 @@
 import { SavingCycle } from "./saving-cycle";
+import { SavingStrategy } from "./saving-strategy";
 import { User } from "./user";
 
 export interface SavingPlan {
@@ -6,12 +7,10 @@ export interface SavingPlan {
     savingCycle: SavingCycle,
     duration: number,
     amount: number
-    aggressive: boolean
+    strategy: SavingStrategy,
     startdate?: Date,
     endDate?: Date,
     reminderOn?: boolean,
-
-
     target?: number
 
 }

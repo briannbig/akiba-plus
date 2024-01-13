@@ -10,7 +10,8 @@
                     <div class="form-floating mb-3">
                         <label for="floatingInput">Select tarrif:</label> <br>
                         <select formControlName="tarrif" name="tarrif" style="width: 100%;">
-                            
+                            <option *ngFor="let tarrif of tarrifs" class="form-control" [value]="tarrif">
+                                {{tarrif}}</option>
                         </select>
                     </div>
                     <div class="form-floating mb-3">
@@ -21,6 +22,13 @@
                         <input type="number" class="form-control" formControlName="duration">
                         <label for="floatingInput">Duration</label>
                     </div>
+                    <div class="form-floating mb-3">
+                        <label for="floatingInput">Select strategy:</label> <br>
+                        <select formControlName="strategy" name="strategy" style="width: 100%;">
+                            <option *ngFor="let strategy of strategies" class="form-control" [value]="strategy">
+                                {{strategy}}</option>
+                        </select>
+                    </div>
                     <div class="col-12 py-4">
                         <button class="btn btn-primary w-100" type="submit">Calculate</button>
                     </div>
@@ -30,10 +38,13 @@
             <div class="col col-md-6 col-sm-12">
 
                 <ul class="fa-ul">
+                    <li><span class="text-muted">Tarrif: </span>{{savingPlan?.savingCycle}}</li>
                     <li><span class="text-muted">Duration: </span>{{savingPlan?.duration}}</li>
                     <li><span class="text-muted">Saving amount: </span>{{savingPlan?.amount}}</li>
                     <li><span class="text-muted">Start date: </span>{{savingPlan?.startdate}}</li>
                     <li><span class="text-muted">End date: </span>{{savingPlan?.endDate}}</li>
+                    <li><span class="text-muted">Strategy: </span>{{savingPlan?.strategy}}</li>
+                    <br>
 
                     <li class="h6"><span class="text-muted">Target: </span>{{savingPlan?.target}}</li>
 

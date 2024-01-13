@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { SavingService } from '../../core/service/saving.service';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SavingPlan } from '../../core/models/saving-plan';
 import { User } from '../../core/models/user';
 import { SavingCycle } from '../../core/models/saving-cycle';
+import { SavingStrategy } from '../../core/models/saving-strategy';
 
 @Component({
   selector: 'app-calculator',
@@ -13,20 +13,20 @@ import { SavingCycle } from '../../core/models/saving-cycle';
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.css'
 })
-export class CalculatorComponent implements OnInit {
+export class CalculatorComponent {
 
 
   savingPlan: SavingPlan | undefined
+  tarrifs = Object.values(SavingCycle)
+  strategies = Object.values(SavingStrategy)
 
   calcForm = new FormGroup({
+    tarrif: new FormControl(SavingCycle.DAILY, { nonNullable: true }),
     amount: new FormControl(10, { nonNullable: true }),
     duration: new FormControl(3, { nonNullable: true }),
+    strategy: new FormControl(SavingStrategy.NORMAL, { nonNullable: true }),
   })
 
-  constructor(private savingsService: SavingService) { }
-
-  ngOnInit(): void {
-  }
 
   calculate() {
     let user: User = {
@@ -38,13 +38,15 @@ export class CalculatorComponent implements OnInit {
 
     let duration = this.calcForm.value.duration!;
     let amount = this.calcForm.value.amount!;
+    let tarrif = this.calcForm.value.tarrif!;
+    let strategy = this.calcForm.value.strategy!;
 
     let target = 0
 
     this.savingPlan = {
       user: user,
-      savingCycle: SavingCycle.DAILY,
-      aggressive: true,
+      savingCycle: tarrif,
+      strategy: strategy,
       duration: duration,
       amount: amount,
       target: target
