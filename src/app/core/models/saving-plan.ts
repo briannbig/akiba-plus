@@ -3,6 +3,7 @@ import { SavingStrategy } from "./saving-strategy";
 import { User } from "./user";
 
 export interface SavingPlan {
+    id?: number,
     user: User,
     savingCycle: SavingCycle,
     duration: number,

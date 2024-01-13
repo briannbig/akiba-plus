@@ -12,7 +12,13 @@ export class SavingService {
     return this.savings;
   }
 
+  getSavingPlanById(id: number): SavingPlan | undefined {
+    return this.savings.find(s => s.id === id)
+  }
+
   public addPlan(savingPlan: SavingPlan) {
+    let id = this.savings.length
+    savingPlan.id = id++
     this.savings.push(savingPlan);
   }
 
