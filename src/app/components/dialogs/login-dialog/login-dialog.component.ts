@@ -18,7 +18,7 @@ export class LoginDialogComponent {
   constructor(private auth: AuthService) { }
 
   signIn() {
-    this.auth.signIn()
+    this.auth.signIn("", "")
   }
 
 
