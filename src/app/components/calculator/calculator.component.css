@@ -1,3 +1,17 @@
-.card{
-    border-radius: 10px;
+.card {
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: azure;
+    transition: 0.5s;
 }
+
+.card .card-title{
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.card hr {
+    background-color: burlywood;
+    margin-top: 0px;
+}
+
