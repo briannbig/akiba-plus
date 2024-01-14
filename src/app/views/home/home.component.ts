@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private savingsService: SavingService) { }
   ngOnInit(): void {
-    this.savingPlans = this.savingsService.getSavings()
+    this.savingsService.getSavings().subscribe(res => this.savingPlans = res)
   }
 
 

@@ -32,7 +32,7 @@
                         </div>
 
                     </div>
-                    <div class="rpw">
+                    <div class="row">
                         <div class="col-12 w-100 m-1">
                             <button class="btn w-100 btn-sm btn-primary " type="submit">Calculate</button>
                         </div>
@@ -49,7 +49,7 @@
                     <li>Tarrif: <span class="text-muted">{{savingPlan?.savingCycle}}</span></li>
                     <li>Duration: <span class="text-muted">{{savingPlan?.duration}}</span></li>
                     <li>Saving amount: <span class="text-muted">{{savingPlan?.amount}}</span></li>
-                    <li>Strategy: <span class="text-muted">{{savingPlan?.strategy}}</span></li>
+                    <li>Strategy: <span class="text-muted">{{savingPlan?.savingStrategy}}</span></li>
                     <br>
 
                     <li class="h6">Target: <span class="text-muted">{{savingPlan?.target}}</span></li>
@@ -57,7 +57,9 @@
                 </ul>
 
                 <div *ngIf="savingPlan" class="col-12 py-4">
-                    <button class="btn btn-warning w-100" (click)="createPlan()">Create plan</button>
+                    <button *ngIf="isLoggedIn" class="btn btn-warning w-100" (click)="createPlan()">Create plan</button>
+                    <p *ngIf="!isLoggedIn" class="text text-dark text-muted small">To create the above plan, please
+                        login first.</p>
                 </div>
 
             </div>

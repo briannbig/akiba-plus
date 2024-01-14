@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SavingPlan } from '../../core/models/saving-plan';
@@ -7,6 +7,8 @@ import { SavingCycle } from '../../core/models/saving-cycle';
 import { SavingStrategy } from '../../core/models/saving-strategy';
 import { CalculatorService } from '../../core/service/calculator.service';
 import { SavingService } from '../../core/service/saving.service';
+import { AuthService } from '../../core/service/auth/auth.service';
+import { log } from 'util';
 
 @Component({
   selector: 'app-calculator',
@@ -15,8 +17,10 @@ import { SavingService } from '../../core/service/saving.service';
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.css'
 })
-export class CalculatorComponent {
+export class CalculatorComponent implements OnInit {
 
+
+  isLoggedIn: boolean = false
 
   savingPlan: SavingPlan | undefined
   tarrifs = Object.values(SavingCycle)
@@ -29,7 +33,10 @@ export class CalculatorComponent {
     duration: new FormControl(3, { nonNullable: true }),
   })
 
-  constructor(private calculatorService: CalculatorService, private savingsService: SavingService) { }
+  constructor(private calculatorService: CalculatorService, private savingsService: SavingService, private auth: AuthService) { }
+  ngOnInit(): void {
+    this.isLoggedIn = this.auth.signedIn()
+  }
 
 
   calculate() {
@@ -51,7 +58,7 @@ export class CalculatorComponent {
     this.savingPlan = {
       user: user,
       savingCycle: tarrif,
-      strategy: this.strategy,
+      savingStrategy: this.strategy,
       duration: duration,
       amount: amount,
       target: target,
@@ -64,7 +71,14 @@ export class CalculatorComponent {
   }
 
   createPlan() {
-    this.savingsService.addPlan(this.savingPlan!)
+    this.savingsService.addPlan(this.savingPlan!).subscribe((res: any) => {
+      if (res) {
+        console.log('--------------->  newly created plan response: ', res);
+        
+        return
+        
+      }
+    })
   }
 
   toggleStrategy() {

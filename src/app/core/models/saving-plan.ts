@@ -8,7 +8,7 @@ export interface SavingPlan {
     savingCycle: SavingCycle,
     duration: number,
     amount: number
-    strategy: SavingStrategy,
+    savingStrategy: SavingStrategy,
     startdate?: Date,
     endDate?: Date,
     reminderOn?: boolean,
