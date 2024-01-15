@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: url('../src/assets/bg-photo.jpg') no-repeat fixed, linear-gradient(-134deg, #0cee90 0%, #064b45 100%);
-    background-blend-mode: luminosity;
+    backdrop-filter: blur(10px);
     background-size: cover;
     background-position: center;
     -webkit-background-size: cover;

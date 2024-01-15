@@ -1,16 +1,36 @@
-<div class="row">
-    <div class="col col-4">
-        <div class="card mb-1 small p-0">
-            <div class="card-header small bg-dark text-white py-0 pt-1">
-                <h5 class="card-title">{{savingPlan?.savingCycle}}, {{savingPlan?.savingStrategy}}</h5>
-            </div>
-            <div class="card-body small p-1">
-                <p class="card-text h6">Target amount: {{savingPlan?.target}}</p>
-                <p class="card-text my-0">Starting amount: <span class="text-muted">ksh. {{savingPlan?.amount}}</span>
+<div class="plan vh-100">
+
+
+    <div class="row">
+        <div class="col col-md-4 col-sm-12">
+            <h5 class="card-title">Plan details</h5>
+            <div class="info-card">
+                <p class="card-text h6">Saving cycle: <span class="text-muted">{{savingPlan?.savingCycle}}</span> </p>
+                <p class="card-text h6">Saving Strategy: <span class="text-muted">{{savingPlan?.savingStrategy}}</span>
                 </p>
-                <p class="card-text my-0">Target amount: <span class="text-muted"> {{savingPlan?.target}} </span></p>
+                <hr>
+                <p class="card-text my-0">Starting amount: <span class="text-muted">ksh.{{savingPlan?.amount}}</span>
+                </p>
+                <p class="card-text h6">Target amount: {{savingPlan?.target}}</p>
+
                 <p class="card-text"><small class="text-muted">{{savingPlan?.startdate?.toDateString()}} - </small></p>
             </div>
         </div>
+
+        <div class="col col-md-8 col-sm-12">
+            <h5>Specifics</h5>
+            <div class="row">
+                <div class="col col-md-3 neumorphic">
+                    <p class="card-title">Target</p>
+                    <p>Ksh {{savingPlan?.target}}</p>
+                </div>
+                <div class="col col-md-3 neumorphic">
+                    <p class="card-title">Balance</p>
+                    <p>Ksh {{savingPlan?.amount}}</p>
+                </div>  
+            </div>
+
+        </div>
+
+
     </div>
-</div>

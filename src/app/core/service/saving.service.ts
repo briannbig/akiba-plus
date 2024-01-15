@@ -16,8 +16,8 @@ export class SavingService {
     return this.http.get<SavingPlan[]>(this.baseUrl)
   }
 
-  getSavingPlanById(id: number): SavingPlan | undefined {
-    return this.savings.find(s => s.id === id)
+  getSavingPlanById(id: string) {
+    return this.http.get(`${this.baseUrl}/${id}`)
   }
 
   public addPlan(plan: SavingPlan) {
