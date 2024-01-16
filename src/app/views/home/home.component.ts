@@ -26,6 +26,9 @@ export class HomeComponent implements OnInit {
       this.savingsService.getSavings().subscribe(res => this.savingPlans = res)
     }
   }
+  onPlanAdded($event: SavingPlan) {
+    this.savingPlans?.push($event)
+  }
 
 
 

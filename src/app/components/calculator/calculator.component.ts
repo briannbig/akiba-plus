@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SavingPlan } from '../../core/models/saving-plan';
@@ -17,6 +17,8 @@ import { AuthService } from '../../core/service/auth/auth.service';
 })
 export class CalculatorComponent implements OnInit {
 
+
+  @Output() planAdded = new EventEmitter<SavingPlan>();
 
   isLoggedIn: boolean = false
 
@@ -66,7 +68,7 @@ export class CalculatorComponent implements OnInit {
     this.savingPlan!.goal = this.calcForm.value.goal!
     this.savingsService.addPlan(this.savingPlan!).subscribe((res: any) => {
       if (res) {
-        return
+        this.planAdded.emit(res)
       }
     })
   }

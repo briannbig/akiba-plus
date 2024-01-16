@@ -28,14 +28,9 @@
         </div>
 
         <div class="col col-md-8 col-sm-12">
-            <h5>Specifics</h5>
-            <div class="row">
-                <div class="col col-md-3 neumorphic">
-                    <p class="card-title">Target</p>
-                    <p>Ksh {{savingPlan?.target}}</p>
-                </div>
-                <div class="col col-md-3 neumorphic">
-                    <p class="card-title">So far saved Ksh {{savingPlan?.currentBalance}}</p>
+            <div class="row mb-2">
+                <div class="col col-md-5 neumorphic">
+                    <app-saving-progress-chart [savingPlan]="savingPlan"></app-saving-progress-chart>
                 </div>
             </div>
         </div>

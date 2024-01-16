@@ -4,13 +4,14 @@ import { SavingService } from '../../core/service/saving.service';
 import { SavingPlan } from '../../core/models/saving-plan';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatDialogTitle, MatDialogContent } from '@angular/material/dialog'
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SavingProgressChartComponent } from '../../components/charts/saving-progress-chart/saving-progress-chart.component';
 
 @Component({
   selector: 'app-plan',
   standalone: true,
-  imports: [MatDialogTitle, MatDialogContent, FormsModule],
+  imports: [MatDialogTitle, MatDialogContent, ReactiveFormsModule],
   templateUrl: './plan.add.saving.dialog.html',
   styleUrl: './plan.component.css'
 
@@ -20,6 +21,11 @@ export class AddSavingDialog implements OnInit {
   savingAmount: number = 0
   planId: string | undefined
   msg: string | undefined
+
+  savingForm = new FormGroup({
+    amount: new FormControl(this.savingAmount, { nonNullable: true })
+  })
+
   constructor(@Inject(MAT_DIALOG_DATA) private data: { id: string, amount: number }, private service: SavingService) { }
 
   ngOnInit(): void {
@@ -28,7 +34,7 @@ export class AddSavingDialog implements OnInit {
   }
 
   addSaving() {
-    this.service.addSaving(this.planId!, this.savingAmount).subscribe((res: any) => {
+    this.service.addSaving(this.planId!, this.savingForm.value.amount!).subscribe((res: any) => {
       if (res) {
         this.msg = res.id !== null ? "Saving made" : "Could not make saving"
       }
@@ -41,7 +47,7 @@ export class AddSavingDialog implements OnInit {
 @Component({
   selector: 'app-plan',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SavingProgressChartComponent],
   templateUrl: './plan.component.html',
   styleUrl: './plan.component.css'
 })
@@ -49,7 +55,7 @@ export class PlanComponent implements OnInit {
 
 
   planId: string | undefined
-  savingPlan: SavingPlan | undefined
+  savingPlan?: SavingPlan
 
   constructor(private route: ActivatedRoute, private savingsService: SavingService, private router: Router, private dialog: MatDialog) { }
 
