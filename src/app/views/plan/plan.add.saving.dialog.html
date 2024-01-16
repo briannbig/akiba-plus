@@ -1,0 +1,11 @@
+<h6 mat-dialog-title>Add saving</h6>
+<div mat-dialog-content>
+    <form class="py-5 ">
+        <div class="form-group mb-3">
+            <label for="amount">Amount</label>
+            <input type="number" name="amount" class="form-control" id="amount" [ngModel]="savingAmount" min="1">
+        </div>
+        <button class="btn btn-primary w-100" (click)="addSaving()">Add</button>
+    </form>
+    <p>{{msg}}</p>
+</div>

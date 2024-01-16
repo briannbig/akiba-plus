@@ -24,9 +24,13 @@ export class AppComponent implements OnInit {
 
   openLoginDialog() {
     this.dialog.open(LoginDialogComponent)
+      .afterClosed().subscribe(() => {
+        this.isSignedIn = this.auth.signedIn()
+      })
   }
 
   logout() {
     this.auth.signOut()
+    this.isSignedIn = this.auth.signedIn()
   }
 }

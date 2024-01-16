@@ -1,14 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SavingPlan } from '../../core/models/saving-plan';
-import { User } from '../../core/models/user';
 import { SavingCycle } from '../../core/models/saving-cycle';
 import { SavingStrategy } from '../../core/models/saving-strategy';
 import { CalculatorService } from '../../core/service/calculator.service';
 import { SavingService } from '../../core/service/saving.service';
 import { AuthService } from '../../core/service/auth/auth.service';
-import { log } from 'util';
 
 @Component({
   selector: 'app-calculator',
@@ -31,6 +29,8 @@ export class CalculatorComponent implements OnInit {
     tarrif: new FormControl(SavingCycle.DAILY, { nonNullable: true }),
     amount: new FormControl(10, { nonNullable: true }),
     duration: new FormControl(3, { nonNullable: true }),
+    goal: new FormControl('')
+
   })
 
   constructor(private calculatorService: CalculatorService, private savingsService: SavingService, private auth: AuthService) { }
@@ -40,13 +40,6 @@ export class CalculatorComponent implements OnInit {
 
 
   calculate() {
-    const user: User = {
-      lastName: "",
-      firstName: "",
-      email: "",
-      userName: ""
-    }
-
     const duration = this.calcForm.value.duration!;
     const amount = this.calcForm.value.amount!;
     const tarrif = this.calcForm.value.tarrif!;
@@ -56,7 +49,6 @@ export class CalculatorComponent implements OnInit {
     const target = this.calculatorService.calculateSavingsTargetAmount(this.strategy, duration, amount)
 
     this.savingPlan = {
-      user: user,
       savingCycle: tarrif,
       savingStrategy: this.strategy,
       duration: duration,
@@ -71,12 +63,10 @@ export class CalculatorComponent implements OnInit {
   }
 
   createPlan() {
+    this.savingPlan!.goal = this.calcForm.value.goal!
     this.savingsService.addPlan(this.savingPlan!).subscribe((res: any) => {
       if (res) {
-        console.log('--------------->  newly created plan response: ', res);
-        
         return
-        
       }
     })
   }

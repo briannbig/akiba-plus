@@ -24,4 +24,13 @@ export class SavingService {
     return this.http.post(this.baseUrl, plan);
   }
 
+  deletePlan(id: string) {
+    return this.http.delete(`${this.baseUrl}/${id}`)
+  }
+
+  addSaving(planId: string, amount: number) {
+    return this.http.post(`${this.baseUrl}/add-saving`, { savingPlanId: planId, amount: amount })
+  }
+
+
 }

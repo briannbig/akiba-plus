@@ -7,22 +7,22 @@
         <div class="row">
             <div class="col col-md-6 col-sm-12 ">
                 <form [formGroup]="calcForm" (ngSubmit)="calculate()">
-                    <div class="form-floating mb-3">
+                    <div class="form-floating mb-2">
                         <label for="floatingInput">Select tarrif:</label> <br>
                         <select formControlName="tarrif" name="tarrif" style="width: 100%;">
                             <option *ngFor="let tarrif of tarrifs" class="form-control" [value]="tarrif">
                                 {{tarrif}}</option>
                         </select>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="form-floating mb-2">
                         <input type="number" class="form-control" formControlName="amount">
                         <label for="floatingInput">Amount</label>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="form-floating mb-2">
                         <input type="number" class="form-control" formControlName="duration">
                         <label for="floatingInput">Duration</label>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="form-floating mb-2">
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="" id="" value=""
@@ -30,7 +30,11 @@
                                 Aggressive?
                             </label>
                         </div>
+                    </div>
 
+                    <div class="form-floating mb-2">
+                        <input type="text" name="goal" class="form-control" formControlName="goal"
+                            placeholder="What is your purpose for this saving?">
                     </div>
                     <div class="row">
                         <div class="col-12 w-100 m-1">
@@ -57,7 +61,11 @@
                 </ul>
 
                 <div *ngIf="savingPlan" class="col-12 py-4">
-                    <button *ngIf="isLoggedIn" class="btn btn-warning w-100" (click)="createPlan()">Create plan</button>
+
+                    <button *ngIf="isLoggedIn && calcForm.value.goal" class="btn btn-warning w-100"
+                        (click)="createPlan()">Create plan</button>
+                    <p *ngIf="isLoggedIn && !calcForm.value.goal" class="text text-dark text-warning">To
+                        create the above plan, please specify your goal</p>
                     <p *ngIf="!isLoggedIn" class="text text-dark text-muted small">To create the above plan, please
                         login first.</p>
                 </div>

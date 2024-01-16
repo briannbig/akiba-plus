@@ -5,6 +5,7 @@ import { SavingCycle } from '../../core/models/saving-cycle';
 import { SavingPlanListComponent } from '../../components/saving-plan-list/saving-plan-list.component';
 import { SavingService } from '../../core/service/saving.service';
 import { SavingPlan } from '../../core/models/saving-plan';
+import { AuthService } from '../../core/service/auth/auth.service';
 
 
 @Component({
@@ -17,13 +18,14 @@ import { SavingPlan } from '../../core/models/saving-plan';
 export class HomeComponent implements OnInit {
   tarrifs: SavingCycle[] = Object.values(SavingCycle)
 
-  savingPlans: SavingPlan[] = []
+  savingPlans: SavingPlan[] | undefined
 
-  constructor(private savingsService: SavingService) { }
+  constructor(private savingsService: SavingService, private auth: AuthService) { }
   ngOnInit(): void {
-    this.savingsService.getSavings().subscribe(res => this.savingPlans = res)
+    if (this.auth.signedIn()) {
+      this.savingsService.getSavings().subscribe(res => this.savingPlans = res)
+    }
   }
-
 
 
 

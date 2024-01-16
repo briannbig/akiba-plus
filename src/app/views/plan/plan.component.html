@@ -3,18 +3,28 @@
 
     <div class="row">
         <div class="col col-md-4 col-sm-12">
-            <h5 class="card-title">Plan details</h5>
-            <div class="info-card">
+            <div class="info-card mb-3">
+                <h3 class="card-title">{{savingPlan?.goal}}</h3>
+                <hr>
                 <p class="card-text h6">Saving cycle: <span class="text-muted">{{savingPlan?.savingCycle}}</span> </p>
                 <p class="card-text h6">Saving Strategy: <span class="text-muted">{{savingPlan?.savingStrategy}}</span>
                 </p>
-                <hr>
                 <p class="card-text my-0">Starting amount: <span class="text-muted">ksh.{{savingPlan?.amount}}</span>
                 </p>
                 <p class="card-text h6">Target amount: {{savingPlan?.target}}</p>
 
                 <p class="card-text"><small class="text-muted">{{savingPlan?.startdate?.toDateString()}} - </small></p>
             </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <button class="btn btn-success btn-sm" (click)="openAddSavingDialog()">Add saving</button>
+
+                </div>
+                <div class="col">
+                    <button class="btn btn-danger btn-sm" (click)="deletePlan()">Delete plan</button>
+                </div>
+            </div>
+
         </div>
 
         <div class="col col-md-8 col-sm-12">
@@ -25,12 +35,35 @@
                     <p>Ksh {{savingPlan?.target}}</p>
                 </div>
                 <div class="col col-md-3 neumorphic">
-                    <p class="card-title">Balance</p>
-                    <p>Ksh {{savingPlan?.amount}}</p>
-                </div>  
+                    <p class="card-title">So far saved Ksh {{savingPlan?.currentBalance}}</p>
+                </div>
             </div>
-
         </div>
-
-
     </div>
+
+    <div class="row">
+        <div class="col-12 col">
+            <div class="info-card">
+                <h5 class="card-title">Saving record</h5>
+                <div class="card-body">
+                    <table class="table table-sm table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let saving of savingPlan?.savings; index as i">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{saving.timestamp}}</td>
+                                <td>Ksh {{saving.amount}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
