@@ -24,8 +24,11 @@
             </div>
 
             <div class="info-card">
-                <h5 class="card-title">Saving record</h5>
-                <div class="card-body">
+                <app-saving-records-chart class="w-100" *ngIf="savingPlan && displayChart"
+                    [savingPlan]="savingPlan!"></app-saving-records-chart>
+                <div *ngIf="!displayChart">
+                    <h5 class="card-title">Saving record</h5>
+                    <hr>
                     <table class="table table-sm table-striped table-hover small">
                         <thead>
                             <tr>
@@ -37,12 +40,14 @@
                         <tbody class="small">
                             <tr *ngFor="let saving of savingPlan?.savings; index as i">
                                 <th scope="row">{{i+1}}</th>
-                                <td>{{saving.timestamp}}</td>
+                                <td>{{saving.timestamp.toLocaleString().substring(0, 10)}}</td>
                                 <td>Ksh {{saving.amount}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
+                <button class="btn btn-dark btn-sm" (click)="toggleChart()">{{displayChart? 'Show table': 'Show chart'}}</button>
             </div>
 
         </div>

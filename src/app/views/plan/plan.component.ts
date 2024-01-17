@@ -4,9 +4,10 @@ import { SavingService } from '../../core/service/saving.service';
 import { SavingPlan } from '../../core/models/saving-plan';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatDialogTitle, MatDialogContent } from '@angular/material/dialog'
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SavingProgressChartComponent } from '../../components/charts/saving-progress-chart/saving-progress-chart.component';
+import { SavingRecordsChartComponent } from '../../components/charts/saving-records-chart/saving-records-chart.component';
 
 @Component({
   selector: 'app-plan',
@@ -47,7 +48,7 @@ export class AddSavingDialog implements OnInit {
 @Component({
   selector: 'app-plan',
   standalone: true,
-  imports: [CommonModule, SavingProgressChartComponent],
+  imports: [CommonModule, SavingProgressChartComponent, SavingRecordsChartComponent],
   templateUrl: './plan.component.html',
   styleUrl: './plan.component.css'
 })
@@ -56,6 +57,7 @@ export class PlanComponent implements OnInit {
 
   planId: string | undefined
   savingPlan?: SavingPlan
+  displayChart: boolean = true;
 
   constructor(private route: ActivatedRoute, private savingsService: SavingService, private router: Router, private dialog: MatDialog) { }
 
@@ -78,6 +80,10 @@ export class PlanComponent implements OnInit {
     this.dialog.open(AddSavingDialog, { data: { "id": this.savingPlan?.id, "amount": this.savingPlan?.amount } })
       .afterClosed().subscribe(() => this.fetchPlan())
 
+  }
+
+  toggleChart() {
+    this.displayChart = this.displayChart ? false : true
   }
 
   private fetchPlan() {
