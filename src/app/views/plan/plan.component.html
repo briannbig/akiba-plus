@@ -1,47 +1,32 @@
-<div class="plan vh-100">
-
-
-    <div class="row">
-        <div class="col col-md-4 col-sm-12">
+<div class="plan ">
+    <div class="row mb-2 mx-2">
+        <h3 class="card-title">{{savingPlan?.goal}}</h3>
+    </div>
+    <div class="row mb-2">
+        <div class="col scrollable">
             <div class="info-card mb-3">
-                <h3 class="card-title">{{savingPlan?.goal}}</h3>
-                <hr>
+
                 <p class="card-text h6">Saving cycle: <span class="text-muted">{{savingPlan?.savingCycle}}</span> </p>
                 <p class="card-text h6">Saving Strategy: <span class="text-muted">{{savingPlan?.savingStrategy}}</span>
                 </p>
                 <p class="card-text my-0">Starting amount: <span class="text-muted">ksh.{{savingPlan?.amount}}</span>
                 </p>
                 <p class="card-text h6">Target amount: {{savingPlan?.target}}</p>
-
-                <p class="card-text"><small class="text-muted">{{savingPlan?.startdate?.toDateString()}} - </small></p>
             </div>
             <div class="row mb-3">
                 <div class="col">
                     <button class="btn btn-success btn-sm" (click)="openAddSavingDialog()">Add saving</button>
 
                 </div>
-                <div class="col">
+                <div *ngIf="!savingPlan?.savings" class="col">
                     <button class="btn btn-danger btn-sm" (click)="deletePlan()">Delete plan</button>
                 </div>
             </div>
 
-        </div>
-
-        <div class="col col-md-8 col-sm-12">
-            <div class="row mb-2">
-                <div class="col col-md-5 neumorphic">
-                    <app-saving-progress-chart [savingPlan]="savingPlan"></app-saving-progress-chart>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col">
             <div class="info-card">
                 <h5 class="card-title">Saving record</h5>
                 <div class="card-body">
-                    <table class="table table-sm table-striped table-hover">
+                    <table class="table table-sm table-striped table-hover small">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -49,7 +34,7 @@
                                 <th scope="col">Amount</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="small">
                             <tr *ngFor="let saving of savingPlan?.savings; index as i">
                                 <th scope="row">{{i+1}}</th>
                                 <td>{{saving.timestamp}}</td>
@@ -59,6 +44,18 @@
                     </table>
                 </div>
             </div>
+
+        </div>
+
+        <div class="col col-md-4">
+            <div class="card mb-1 small neumorphic pt-2">
+                <app-saving-progress-chart *ngIf="savingPlan" [savingPlan]="savingPlan!"></app-saving-progress-chart>
+                <br>
+                <p class="card-text h4">Ksh.{{savingPlan?.target}}</p>
+                <p class="card-text h6">Saved: {{savingPlan?.currentBalance}}</p>
+            </div>
         </div>
     </div>
+
+
 </div>

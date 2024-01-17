@@ -1,8 +1,12 @@
 body {
     margin: 0;
+    height: 100vh;
+}
+
+.wrapper {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: url('../src/assets/bg-photo.jpg') no-repeat fixed, linear-gradient(-134deg, #0cee90 0%, #064b45 100%);
-    backdrop-filter: blur(10px);
+    background: url('../src/assets/bg-photo.jpg') no-repeat fixed, linear-gradient(-134deg, #b5cfc2 0%, #6f7978 100%);
+    backdrop-filter: blur(30px);
     background-size: cover;
     background-position: center;
     -webkit-background-size: cover;
@@ -10,6 +14,21 @@ body {
 
     background-size: cover;
     -o-background-size: cover;
+    min-height: 100%;
+
+}
+
+.card {
+    padding: 15px;
+    border-radius: 20px;
+    background-color: azure;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.card hr {
+    background-color: crimson;
+    margin-top: 0px;
 }
 
 @keyframes animate {

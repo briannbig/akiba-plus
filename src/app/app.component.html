@@ -1,27 +1,24 @@
-<main>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light static-top fixed-top shadow">
-    <div class="container">
-      <a class="navbar-brand">Akiba plus</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item active">
-            <a class="nav-link">Home</a>
-          </li>
-          <li *ngIf="!isSignedIn" class="nav-item">
-            <a class="nav-link btn btn-sm btn-primary small text-white" (click)="openLoginDialog()">Login</a>
-          </li>
-          <li *ngIf="isSignedIn" class="nav-item">
-            <a class="nav-link btn btn-sm btn-danger small text-white" (click)="logout()">Logout</a>
-          </li>
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top shadow">
+  <div class="container d-flex justify">
+    <a class="navbar-brand" [routerLink]="['/']">Akiba plus</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        <li *ngIf="!isSignedIn" class="nav-item">
+          <a class="nav-link btn btn-sm btn-primary small text-white" (click)="openLoginDialog()">Login</a>
+        </li>
+        <li *ngIf="isSignedIn" class="nav-item">
+          <a class="nav-link btn btn-sm btn-danger small text-white" (click)="logout()">Logout</a>
+        </li>
+      </ul>
     </div>
-  </nav>
-  <div class="container wrapper p-5  vh-100">
+  </div>
+</nav>
+<div class="wrapper ">
+  <div class="container mt-5 ">
     <router-outlet></router-outlet>
   </div>
-</main>
+</div>

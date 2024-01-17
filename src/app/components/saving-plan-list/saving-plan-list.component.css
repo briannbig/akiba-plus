@@ -1,21 +1,6 @@
-.row {
-    box-sizing: border-box;
-}
-
-.card {
-    margin: 10px auto;
-    padding: 15px;
+.card{
     text-align: center;
-    border-radius: 20px;
-    background-color: azure;
-    cursor: pointer;
-    transition: 0.5s;
 }
-.card hr{
-    background-color: crimson;
-    margin-top: 0px;
-}
-
 .card:hover {
-    transform: scale(0.9, 0.9);
+    transform: scale(1.09, 0.97);
 }

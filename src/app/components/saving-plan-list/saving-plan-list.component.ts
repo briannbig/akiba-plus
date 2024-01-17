@@ -15,6 +15,7 @@ import { SavingProgressChartComponent } from '../charts/saving-progress-chart/sa
 export class SavingPlanListItem {
 
   @Input() savingPlan!: SavingPlan
+  @Input() informative: boolean = true
 
 }
 

@@ -7,7 +7,6 @@
 
 .card-title {
     text-transform: capitalize;
-    font-family: "Playfair Display";
     font-weight: 500;
 }
 
@@ -33,7 +32,8 @@ hr {
     aspect-ratio: 1/1;
     border: 0.5rem solid transparent;
     border-radius: 1rem;
-    color: hsl(0 0% 10%);
+    color: #1a1a1a;
+    text-align: center;
     background: none;
     margin-right: 5px;
     margin-bottom: 5px;
@@ -50,11 +50,17 @@ hr {
 
     &:hover,
     &:focus-visible {
-        color:crimson;
-        scale: 0.9
+        scale: 0.99
     }
+
     >p {
         font-family: system-ui, sans-serif;
-        font-size: 16cqi;
     }
+
+}
+
+.scrollable {
+    overflow-y: auto;
+    height: 400px;
+    display: block;
 }

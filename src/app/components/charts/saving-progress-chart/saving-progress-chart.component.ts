@@ -30,7 +30,7 @@ export class SavingProgressChartComponent implements OnInit {
     this.chartDatasets = [
       {
         data: [this.savingPlan?.target?? 0, this.savingPlan?.currentBalance?? 1],
-        label: 'goal target',
+        label: 'saving progress',
       },
     ];
   }

@@ -3,8 +3,8 @@
     <h5 class="card-title">{{savingPlan.goal}}</h5>
     <hr>
     <app-saving-progress-chart [savingPlan]="savingPlan"></app-saving-progress-chart>
-    <p class="card-text h4">Ksh.{{savingPlan.currentBalance}}</p>
-    <p class="card-text h6">Target: {{savingPlan.target}}</p>
+    <p class="card-text h4">Ksh.{{savingPlan.target}}</p>
+    <p class="card-text h6">Saved: {{savingPlan.currentBalance}}</p>
 
     <p class="card-text my-0">Minimum saving amount: <span class="text-muted"> Ksh.{{savingPlan.amount}} </span></p>
     <p class="card-text"><small class="text-muted">{{savingPlan.startdate?.toDateString()}} - </small></p>
