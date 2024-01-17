@@ -1,0 +1,35 @@
+<h5 mat-dialog-title>Sign up</h5>
+<div mat-dialog-content class="card">
+    <form [formGroup]="signUpFrom" (ngSubmit)="signUp()">
+        <div class="form-floating mb-2">
+            <input type="text" name="username" class="form-control" formControlName="username" placeholder="username">
+            <label for="">username</label>
+        </div>
+
+        <div class="form-floating mb-2">
+            <input type="email" name="email" class="form-control" formControlName="email" placeholder="email">
+            <label for="">Email</label>
+        </div>
+
+        <div class="form-floating mb-2">
+            <input type="text" name="name" class="form-control" formControlName="fullName" placeholder="Full Name">
+            <label for="">First name</label>
+        </div>
+
+        <div class="form-floating mb-2">
+            <input type="password" name="password" class="form-control" formControlName="password"
+                placeholder="Password">
+            <label for="">Password</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="password" name="passwordConfirm" class="form-control" formControlName="passwordConfirm"
+                placeholder="Confirm your password">
+            <label for="">Password confirmation</label>
+        </div>
+
+        <input class="btn btn-sm btn-primary" type="submit" value="Sign up">
+    </form>
+    <p>{{response}}</p>
+    <p>already have an account? <span><button (click)="openLoginDialog()">Login</button></span></p>
+</div>

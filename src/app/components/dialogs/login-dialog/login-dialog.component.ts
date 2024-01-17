@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { MatDialogTitle, MatDialogContent } from '@angular/material/dialog'
+import { MatDialogTitle, MatDialogContent, MatDialog } from '@angular/material/dialog'
 import { AuthService } from '../../../core/service/auth/auth.service';
+import { SignUpDialogComponent } from '../sign-up-dialog/sign-up-dialog.component';
 
 
 @Component({
@@ -20,10 +21,14 @@ export class LoginDialogComponent {
   })
 
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private dialog: MatDialog) { }
 
   signIn() {
     this.auth.signIn(this.loginForm.value.username!, this.loginForm.value.password!)
+  }
+
+  openSignupDialog() {
+    this.dialog.open(SignUpDialogComponent)
   }
 
 

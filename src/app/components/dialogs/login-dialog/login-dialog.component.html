@@ -3,7 +3,7 @@
 <div mat-dialog-content class="card border-0 shadow rounded-3">
     <div class="card-body">
 
-        <form [formGroup]="loginForm" (submit)="signIn()">
+        <form [formGroup]="loginForm" (submit)="signIn()" class="mb-3">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingInput" placeholder="username"
                     formControlName="username" required>
@@ -18,5 +18,6 @@
                 <button class="btn btn-primary text-uppercase btn-sm w-100 fw-bold" type="submit">Sign in</button>
             </div>
         </form>
+        <p>Does'nt have an account? <span><button class="btn btn-secondary btn-sm " (click)="openSignupDialog()">Sign up</button></span></p>
     </div>
 </div>

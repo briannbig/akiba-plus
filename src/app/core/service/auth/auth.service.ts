@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { User } from '../../models/user';
 import { HttpClient } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
+import { SignUpModel } from '../../models/sign-up-model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,10 @@ export class AuthService {
 
       }
     })
+  }
+
+  signUp(signupModel: SignUpModel) {
+    return this.http.post(`${this.baseUrl}/sign-up`, signupModel)
   }
 
 
