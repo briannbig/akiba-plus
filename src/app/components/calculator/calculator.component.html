@@ -6,26 +6,38 @@
     <div class="card-body">
         <div class="row">
             <div class="col col-md-6 col-sm-12 ">
-                <form [formGroup]="calcForm" (ngSubmit)="calculate()">
-                    <div class="form-floating mb-2">
+                <form>
+
+                    <div class=" form-floating mb-2">
                         <label for="floatingInput">Select tarrif:</label> <br>
-                        <select formControlName="tarrif" name="tarrif" style="width: 100%;">
+                        <select [(ngModel)]="savingCycle" name="tarrif" style="width: 100%;">
                             <option *ngFor="let tarrif of tarrifs" class="form-control" [value]="tarrif">
                                 {{tarrif}}</option>
                         </select>
                     </div>
+
                     <div class="form-floating mb-2">
-                        <input type="number" class="form-control" formControlName="amount">
-                        <label for="floatingInput">Amount</label>
+                        <label>Duration: {{durationSlider.value}}</label> <br>
+                        <mat-slider class="w-100" [max]="maxDuration" [min]="minDuration" [step]="durationSteps"
+                            [showTickMarks]="showTicks">
+                            <input matSliderThumb [(ngModel)]="duration" #durationSlider name="duration">
+                        </mat-slider>
+
                     </div>
+
                     <div class="form-floating mb-2">
-                        <input type="number" class="form-control" formControlName="duration">
-                        <label for="floatingInput">Duration</label>
+                        <label>Amount: Ksh. {{amountSlider.value}}</label> <br>
+                        <mat-slider class="w-100" [max]="maxSavingAmount" [min]="minSavingAmount" [step]="amountSteps"
+                            [showTickMarks]="showTicks">
+                            <input matSliderThumb [(ngModel)]="savingAmount" #amountSlider name="amount">
+                        </mat-slider>
+
                     </div>
+
                     <div class="form-floating mb-2">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="" id="" value=""
+                                <input type="radio" class="form-check-input" name="aggressive" id="" value=""
                                     [checked]="aggressive" (click)="toggleStrategy()">
                                 Aggressive?
                             </label>
@@ -33,12 +45,12 @@
                     </div>
 
                     <div class="form-floating mb-2">
-                        <input type="text" name="goal" class="form-control" formControlName="goal"
+                        <input type="text" name="goal" class="form-control" [(ngModel)]="goal"
                             placeholder="What is your purpose for this saving?">
                     </div>
                     <div class="row">
                         <div class="col-12 w-100 m-1">
-                            <button class="btn w-100 btn-sm btn-primary " type="submit">Calculate</button>
+                            <button class="btn w-100 btn-sm btn-primary " (click)="calculate()">Calculate</button>
                         </div>
                         <div *ngIf="savingPlan" class="col-12 w-100 m-1">
                             <button class="btn w-100 btn-sm btn-dark " type="reset" (click)="reset()">Reset</button>
@@ -50,10 +62,10 @@
             <div class="col col-md-6 col-sm-12">
 
                 <ul class="fa-ul">
-                    <li>Tarrif: <span class="text-muted">{{savingPlan?.savingCycle}}</span></li>
-                    <li>Duration: <span class="text-muted">{{savingPlan?.duration}}</span></li>
-                    <li>Saving amount: <span class="text-muted">{{savingPlan?.amount}}</span></li>
-                    <li>Strategy: <span class="text-muted">{{savingPlan?.savingStrategy}}</span></li>
+                    <li>Tarrif: <span class="text-muted">{{savingCycle}}</span></li>
+                    <li>Duration: <span class="text-muted">{{duration}}</span></li>
+                    <li>Saving amount: <span class="text-muted">{{savingAmount}}</span></li>
+                    <li>Strategy: <span class="text-muted">{{strategy}}</span></li>
                     <br>
 
                     <li class="h6">Target: <span class="text-muted">{{savingPlan?.target}}</span></li>
@@ -62,9 +74,9 @@
 
                 <div *ngIf="savingPlan" class="col-12 py-4">
 
-                    <button *ngIf="isLoggedIn && calcForm.value.goal" class="btn btn-warning w-100"
-                        (click)="createPlan()">Create plan</button>
-                    <p *ngIf="isLoggedIn && !calcForm.value.goal" class="text text-dark text-warning">To
+                    <button *ngIf="isLoggedIn && goal" class="btn btn-warning w-100" (click)="createPlan()">Create
+                        plan</button>
+                    <p *ngIf="isLoggedIn && !goal" class="text text-dark text-warning">To
                         create the above plan, please specify your goal</p>
                     <p *ngIf="!isLoggedIn" class="text text-dark text-muted small">To create the above plan, please
                         login first.</p>
