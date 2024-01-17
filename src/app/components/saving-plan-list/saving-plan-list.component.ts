@@ -8,7 +8,7 @@ import { SavingProgressChartComponent } from '../charts/saving-progress-chart/sa
 @Component({
   selector: 'app-saving-plan-list-item',
   standalone: true,
-  imports: [RouterLink, SavingProgressChartComponent],
+  imports: [RouterLink, SavingProgressChartComponent, CommonModule],
   templateUrl: './saving-plan-list-item.component.html',
   styleUrl: './saving-plan-list.component.css'
 })

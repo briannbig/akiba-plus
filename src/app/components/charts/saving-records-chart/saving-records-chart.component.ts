@@ -27,10 +27,7 @@ export class SavingRecordsChartComponent implements OnInit {
 
     this.data = this.savingPlan.savings?.map((saving) => { return saving.amount })
     this.labels = this.savingPlan.savings?.map((saving) => {
-      let date = saving.timestamp.toLocaleString().substring(5, 10)
-      console.log(date);
-
-      return date
+      return saving.timestamp.toLocaleString().substring(5, 10)
     })
 
     this.lineChartData = {
