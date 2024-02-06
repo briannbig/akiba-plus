@@ -1,6 +1,6 @@
 # Akiba plus
 
-This project is an angular frontend for  [Transcend](https://github.com/briannbig/akiba-plus-backend) (Built using spring boot). It is based on angular version 17.0.8.
+This project is an angular frontend for  [Akiba plus](https://github.com/briannbig/akiba-plus-backend) (Built using spring boot). It is based on angular version 17.0.8.
 
 
 ## Development server
